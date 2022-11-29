@@ -1,4 +1,9 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Google.Apis.AndroidPublisher.v3;
+using Google.Apis.AndroidPublisher.v3.Data;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using Microsoft.Extensions.Options;
+
 using Newtonsoft.Json;
 
 namespace google_server_to_server_api

@@ -1,4 +1,6 @@
-﻿namespace google_server_to_server_api
+﻿using System.Globalization;
+
+namespace google_server_to_server_api
 {
     public class NotificationProcessor : INotificationProcessor
     {
@@ -61,8 +63,19 @@
             return result;
         }
     }
+
     public interface INotificationProcessor
     {
         Task<PurchaseChange> Process(GoogleNotification googleNotification);
+    }
+
+    public static class Extensions
+    {
+        public static DateTime? ToDateTime(this long? value) => value == null ? null
+            : DateTimeOffset.FromUnixTimeMilliseconds(value.Value).UtcDateTime;
+        public static DateTime ToDateTime(this long value) =>
+            DateTimeOffset.FromUnixTimeMilliseconds(value).UtcDateTime;
+
+        public static string ToFixedString(this decimal value) => value.ToString("F", CultureInfo.InvariantCulture);
     }
 }
